@@ -1,0 +1,36 @@
+---
+format_version: '8'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: other
+trigger_map:
+- push_branch: "*"
+  workflow: primary
+- pull_request_source_branch: "*"
+  workflow: primary
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key@4.0.3:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@4.0.14: {}
+    - file-downloader@1.0.1:
+        inputs:
+        - destination: android/app/khalis.keystore
+        - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
+    - yarn@0.0.8: {}
+    - script@1.1.5:
+        title: Do anything with Script step
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd android/
+            ./gradlew assembleRelease
+    - deploy-to-bitrise-io@1.6.0:
+        inputs:
+        - is_compress: 'true'
+        - deploy_path: android/app/build/outputs/apk/release/
