@@ -16,6 +16,7 @@ import {
     , SearchComponentManga
 } from './components/SearchComponent'
 import genre from '../../utils/genre';
+import Recommended from '../../components/Recommend';
 
 interface State {
     Loading: boolean,
@@ -39,7 +40,7 @@ class MangaSearch extends Component<any, State>{
     static navigationOptions = { header: null }
 
     private Search = async (Search) => {
-        this.setState({ Search, Loading: true,genre:false })
+        this.setState({ Search, Loading: true, genre: false })
         const todos = []
         const animedata = await anime.SearchAnime(this.state.Search)
         const mangadata = await manga.SearchManga(this.state.Search)
@@ -59,7 +60,7 @@ class MangaSearch extends Component<any, State>{
         return (
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 <SearchBar
-                    containerStyle={{  backgroundColor: 'transparent' }}
+                    containerStyle={{ backgroundColor: 'transparent' }}
                     value={this.state.Search}
                     platform="ios"
                     placeholder="Search..."
@@ -68,11 +69,14 @@ class MangaSearch extends Component<any, State>{
                     onChangeText={this.Search}
                 />
                 {this.state.genre ? (
-                    <FlatList
-                        data={genre}
-                        renderItem={this.renderGenre}
-                        keyExtractor={this.key}
-                    />
+                    <View>
+                        <Recommended/>
+                        <FlatList
+                            data={genre}
+                            renderItem={this.renderGenre}
+                            keyExtractor={this.key}
+                        />
+                    </View>
                 ) : (<SectionList
                     sections={[
                         { title: 'Manga', data: [this.manga] },
@@ -85,14 +89,14 @@ class MangaSearch extends Component<any, State>{
         )
     }
 
-    private renderGenre = ({item}) => (
+    private renderGenre = ({ item }) => (
         <View>
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('MangaGenre',{id:item.id})}
+                onPress={() => this.props.navigation.navigate('MangaGenre', { id: item.id })}
             >
-            <ListItem
-                title={item.title}
-            />
+                <ListItem
+                    title={item.title}
+                />
             </TouchableOpacity>
         </View>
     )

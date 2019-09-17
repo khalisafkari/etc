@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator, Text } from 'react-native';
 import manga from '../../utils/manga';
 import { WebView } from 'react-native-webview'
+import { Header } from 'react-native-elements';
 
 interface State {
     data: Array<any>
@@ -28,15 +29,15 @@ class MangaRead extends Component<any, State>{
         })
     }
 
+    static navigationOptions = {header:null};
+
     render() {
         if (this.state.loading) {
             return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><ActivityIndicator /></View>
         }
         return (
             <View style={{ flex: 1 }}>
-                {/* {this.state.data.map((i) => {
-                    return <Text>{i}</Text>
-                })} */}
+                
                 <WebView
                     source={{
                         html: `

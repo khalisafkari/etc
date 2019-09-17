@@ -16,8 +16,9 @@ class MangaLibrary extends Component{
             <View style={{flex:1}}>
                 <Header
                     statusBarProps={{
-                        barStyle:"light-content",
-                        translucent:true
+                       backgroundColor:"rgba(0, 0, 0, 0)",
+                       translucent:true,
+                       animated:true   
                     }}
                     backgroundColor="#fff"
                     centerComponent={{
@@ -27,7 +28,7 @@ class MangaLibrary extends Component{
                 />
                 <SectionList
                     sections={[
-                        {title:'Recommended',data:[this.recommend]},
+                        // {title:'Recommended',data:[this.recommend]},
                         {title:'List',data:[this.List]}
                     ]}
                     renderItem={this.renderItem}
@@ -39,7 +40,7 @@ class MangaLibrary extends Component{
 
     private renderItem = ({item}) => (<View>{item()}</View>)
     private key = (item,index) => item + index;
-    private recommend = () => (<Recommended/>)
+    // private recommend = () => (<Recommended/>)
     private List = () => (<ListManga/>)
 }
 

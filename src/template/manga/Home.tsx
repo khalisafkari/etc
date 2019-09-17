@@ -11,7 +11,7 @@ class MangaHome extends Component{
     render(){
         return(
             <View style={{flex:1,backgroundColor:'black'}}>
-                <StatusBar translucent barStyle="light-content" />
+                <StatusBar translucent backgroundColor="rgba(0, 0, 0, 0)" animated />
                 <SectionList
                     sections={[
                         {title:'Manga',data:[this.NewManga]},

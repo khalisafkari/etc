@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import { View } from 'react-native';
+import { View,TouchableOpacity,FlatList  } from 'react-native';
 
 //redux & nav
 import {useDispatch,useSelector} from 'react-redux'
 import {useNavigation} from 'react-navigation-hooks'
 import manga from '../utils/manga';
 import { POSTS_RECOMMEND_MANGA } from '../store/manga';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, Image } from 'react-native-elements';
 import { material } from 'react-native-typography';
 

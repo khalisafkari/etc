@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, FlatList, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 
 
 import { default as Api } from '../../../utils/manga';
@@ -82,23 +82,24 @@ const ListManga = () => {
                     }}
                 />
             ) : (
-                    <FlatList
-                        data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-                        numColumns={3}
-                        renderItem={() => (
-                            <View style={{ flex: 1, margin: 5 }}>
-                                <Placeholder
-                                    Animation={Fade}
-                                    Left={() => (
-                                        <PlaceholderMedia
-                                            size={120}
-                                        />
-                                    )}
-                                />
-                            </View>
-                        )}
-                        keyExtractor={key}
-                    />
+                    // <FlatList
+                    //     data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+                    //     numColumns={3}
+                    //     renderItem={() => (
+                    //         <View style={{ flex: 1, margin: 5 }}>
+                    //             <Placeholder
+                    //                 Animation={Fade}
+                    //                 Left={() => (
+                    //                     <PlaceholderMedia
+                    //                         size={120}
+                    //                     />
+                    //                 )}
+                    //             />
+                    //         </View>
+                    //     )}
+                    //     keyExtractor={key}
+                    // />
+                    <ActivityIndicator/>
 
                 )}
         </View>
