@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 
 
 import { useNavigation } from 'react-navigation-hooks'
@@ -39,6 +39,9 @@ const MangaGenre = () => {
 
     const renderItem = ({ item }) => (
         <View style={{ flex: 1 / 3, margin: 3, position: 'relative' }}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('MangaPosts',{id:item.id})}
+            >
             <Image
                 source={{ uri: item.image }}
                 style={{ height: 140, width: '100%' }}
@@ -56,6 +59,7 @@ const MangaGenre = () => {
             <View style={{ position: 'absolute', height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'flex-end', padding: 3 }}>
                 <Text numberOfLines={1} style={[material.caption, { color: materialColors.whiteSecondary }]}>{item.title}</Text>
             </View>
+            </TouchableOpacity>
         </View>
     )
 
@@ -70,6 +74,12 @@ const MangaGenre = () => {
     }
     return (
         <View style={{ flex: 1, backgroundColor: "black" }}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('MangaPosts',{
+                    //@ts-ignore
+                    id:banner.id
+                })}
+            >
             <View style={{ position: 'relative' }}>
                 <Image
                     //@ts-ignore
@@ -117,6 +127,7 @@ const MangaGenre = () => {
                     onPress={() => navigation.goBack()}
                 />
             </View>
+            </TouchableOpacity>
             <FlatList
                 data={list}
                 renderItem={renderItem}

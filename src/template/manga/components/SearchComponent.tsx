@@ -31,7 +31,11 @@ export const SearchComponentManga = (props): any => {
 
     return (
         <>
-            <View style={{ flex: 1, flexDirection: 'row', margin: 3 }}>
+            <View >
+                <TouchableOpacity
+                    style={{ flex: 1, flexDirection: 'row', margin: 3 }}
+                    onPress={() => navigation.navigate('MangaPosts',{id:props.id})}
+                >
                 <View style={{ position: 'relative' }}>
                     <Image
                         source={{ uri: props.image }}
@@ -84,6 +88,7 @@ export const SearchComponentManga = (props): any => {
                         <Text style={[material.button,{color:'#3E38F2'}]}>Manga</Text>
                     </View>
                 </View>
+                </TouchableOpacity>
             </View>
         </>
     )

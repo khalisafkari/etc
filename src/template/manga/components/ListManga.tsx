@@ -17,12 +17,15 @@ import {
     Fade
 } from "rn-placeholder";
 
+import { useNavigation } from 'react-navigation-hooks'
+
 const ListManga = () => {
 
     const [total, setTotal] = useState(0)
     //@ts-ignore
     const manga = useSelector(state => state.manga)
     const dispatch = useDispatch()
+    const navigation = useNavigation()
 
     useEffect(() => {
         Api.List(Api.page).then(response => {
@@ -35,7 +38,9 @@ const ListManga = () => {
 
     const renderItem = ({ item }) => (
         <View style={{ flex: 1 / 3, margin: 3, position: 'relative' }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('MangaPosts',{id:item.id})}
+            >
                 <Image
                     source={{
                         uri: `https://verdauen.com/lhscan/?id=${item.data.image}`
@@ -99,7 +104,7 @@ const ListManga = () => {
                     //     )}
                     //     keyExtractor={key}
                     // />
-                    <ActivityIndicator/>
+                    <ActivityIndicator />
 
                 )}
         </View>

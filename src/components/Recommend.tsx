@@ -23,10 +23,10 @@ const Recommended = () => {
         })
     })
 
-    const renderItem = ({item}:any) => (
+    const renderItem = ({item}) => (
         <View style={{maxWidth:100,margin:3}}>
             <TouchableOpacity
-                onPress={() => navigation.navigate('MangaPosts',{id:item.id})}
+               onPress={() => navigation.navigate('MangaPosts',{id:item.id})}
             >
             <Image
                 source={{uri:`https://verdauen.com/lhscan/index.php?id=${item.images}`}}

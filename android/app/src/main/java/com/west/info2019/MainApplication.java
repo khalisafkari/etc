@@ -27,6 +27,7 @@ import expo.modules.filesystem.FileSystemPackage;
 
 import com.rumax.reactnative.pdfviewer.PDFViewPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +50,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNFirebasePackage(),
             new RNFirebaseAnalyticsPackage(),
+            new RNFirebaseAdMobPackage(),
             new ReactVideoPackage(),
             new ReactNativeOneSignalPackage(),
           new RNCWebViewPackage(),

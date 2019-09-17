@@ -41,14 +41,6 @@ const PostsManga = () => {
         dispatch({type:ADD_HISTORY_MANGA,payload:{[`${id}`]:true}})
     }
 
-    const addBookmark = (id:string) => {
-        dispatch({type:ADD_BOOKMARK_MANGA,payload:{[`${id}`]:true}})
-    }
-
-    const rmBookmark = (id:string) => {
-
-    }
-
     return (
         <View style={{backgroundColor: '#fff',paddingBottom:15}}>
             {data ? (

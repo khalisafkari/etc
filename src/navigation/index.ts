@@ -1,3 +1,4 @@
+
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
@@ -5,6 +6,8 @@ import { MangaHome, MangaLibrary, MangaSearch, MangaGenre, MangaPosts, MangaRead
 import { AnimeHome, AnimePosts, VideoAnime, AnimeList } from '../template/anime';
 import { NovelHome } from '../template/novel'
 
+
+import {IHManga, ISManga, ILManga} from './Icon'
 
 const HomeManga = createStackNavigator({
   MangaHome: MangaHome,
@@ -25,12 +28,16 @@ HomeManga.navigationOptions = ({ navigation }) => {
 };
 
 const LibraryManga = createStackNavigator({
-  MangaLibrary: MangaLibrary
+  MangaLibrary: MangaLibrary,
+  MangaPosts: MangaPosts,
+  MangaRead: MangaRead
 })
 
 const SearchManga = createStackNavigator({
   MangaSearch: MangaSearch,
-  MangaGenre: MangaGenre
+  MangaGenre: MangaGenre,
+  MangaPosts: MangaPosts,
+  MangaRead: MangaRead
 })
 
 //@ts-ignore
@@ -48,66 +55,91 @@ SearchManga.navigationOptions = ({ navigation }) => {
 
 //@ts-ignore
 const TabsManga = createBottomTabNavigator({
-  HomeManga: HomeManga,
-  SearchManga: SearchManga,
-  LibraryManga: LibraryManga,
+  HomeManga: {
+    screen: HomeManga,
+    navigationOptions:({
+      tabBarIcon:IHManga
+    })
+  },
+  SearchManga: {
+    screen:SearchManga,
+    navigationOptions:({
+      tabBarIcon:ISManga
+    })
+  },
+  LibraryManga: {
+    screen:LibraryManga,
+    navigationOptions:({
+      tabBarIcon:ILManga
+    })
+  },
 }, {
     //@ts-ignore
     initialRouteName: 'HomeManga',
-  })
+    //@ts-ignore
+    tabBarOptions: {
+      showLabel:false,
+      style: {
+        backgroundColor: 'black',
+      },
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+    },
+    
+})
 
 const HomeAnime = createStackNavigator({
-  AnimeHome: AnimeHome,
-  AnimePosts: AnimePosts,
-  VideoAnime: VideoAnime
-}, {
-    initialRouteName: 'AnimeHome',
-    mode: "modal"
-  })
+      AnimeHome: AnimeHome,
+      AnimePosts: AnimePosts,
+      VideoAnime: VideoAnime
+    }, {
+        initialRouteName: 'AnimeHome',
+        mode: "modal"
+      })
 //@ts-ignore
 HomeAnime.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
+      let tabBarVisible = true;
+      if (navigation.state.index > 0) {
+        tabBarVisible = false;
+      }
 
-  return {
-    tabBarVisible,
-  };
-};
+      return {
+        tabBarVisible,
+      };
+    };
 
-const ListAnime = createStackNavigator({
-  AnimeList: AnimeList
-})
+    const ListAnime = createStackNavigator({
+      AnimeList: AnimeList
+    })
 
 //@ts-ignore
 const TabsAnime = createBottomTabNavigator({
-  HomeAnime: HomeAnime,
-  ListAnime: ListAnime
-  //@ts-ignore
+      HomeAnime: HomeAnime,
+      ListAnime: ListAnime
+      //@ts-ignore
 
-})
+    })
 
 const HomeNovel = createStackNavigator({
-  NovelHome: NovelHome
-})
+      NovelHome: NovelHome
+    })
 
 //@ts-ignore
 const TabsNovel = createBottomTabNavigator({
-  HomeNovel: HomeNovel
-})
+      HomeNovel: HomeNovel
+    })
 
 
 const Switch = createSwitchNavigator({
-  Manga: TabsManga,
-  Anime: TabsAnime,
-  Novel: TabsNovel
-}, {
-    initialRouteName: 'Manga'
-  })
+      Manga: TabsManga,
+      Anime: TabsAnime,
+      Novel: TabsNovel
+    }, {
+        initialRouteName: 'Manga'
+      })
 
 const mode = createSwitchNavigator({
-  Free: Switch
-})
+        Free: Switch
+      })
 
 export default createAppContainer(mode)

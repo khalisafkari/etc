@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, SectionList, FlatList, TouchableOpacity } from 'react-native';
+import { View, SectionList, FlatList, TouchableOpacity, StatusBar } from 'react-native';
 import {
     Input,
     SearchBar,
@@ -16,7 +16,7 @@ import {
     , SearchComponentManga
 } from './components/SearchComponent'
 import genre from '../../utils/genre';
-import Recommended from '../../components/Recommend';
+
 
 interface State {
     Loading: boolean,
@@ -35,6 +35,14 @@ class MangaSearch extends Component<any, State>{
         mangadata: [],
         animedata: [],
         genre: true
+    }
+
+    componentDidMount(){
+        StatusBar.setHidden(true);
+    }
+
+    componentWillUnmount(){
+        StatusBar.setHidden(false)
     }
 
     static navigationOptions = { header: null }
@@ -70,7 +78,6 @@ class MangaSearch extends Component<any, State>{
                 />
                 {this.state.genre ? (
                     <View>
-                        <Recommended/>
                         <FlatList
                             data={genre}
                             renderItem={this.renderGenre}
