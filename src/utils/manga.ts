@@ -87,6 +87,17 @@ class Novel {
       }`,variables:{id}})
       return data.manga
     }
+
+    public async ReadManga(id):Promise<void>{
+      const {data} = await MangaApi.query({query:gql`query Read($id:String){
+        reading(id:$id){
+          data
+          next
+          prev
+        }
+      }`,variables:{id}})
+      return data.reading;
+    }
 }
 
 export default new Novel()

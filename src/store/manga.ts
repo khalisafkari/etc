@@ -8,6 +8,7 @@ export const ADD_HISTORY_CHAPTER = "ADD_HISTORY_CHAPTER"
 
 //Bookmark
 export const ADD_BOOKMARK_MANGA = "ADD_BOOKMARK_MANGA"
+export const REMOVE_BOOKMARK_MANGA = "REMOVE_BOOKMARK_MANGA"
 
 
 interface Data {
@@ -95,18 +96,19 @@ export const manga = (state = store, actions) => {
                 }
             }
         case ADD_BOOKMARK_MANGA:
-            console.log({
-                Bookmark: {
-                    ...state.Bookmark,
-                    ...actions.payload
-                }
-            })
             return {
                 ...state,
                 Bookmark: {
                     ...state.Bookmark,
                     ...actions.payload
                 }
+        }
+        case REMOVE_BOOKMARK_MANGA:
+            const p = state.Bookmark;
+            delete p[actions.payload.id]
+            return {
+                ...state,
+                Bookmark:p
             }
         default:
             return state

@@ -16,6 +16,7 @@ class MangaPosts extends Component<any,any> {
         return (
             <View style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
                 <Header
+                    statusBarProps={{barStyle:"light-content",translucent:true}}
                     backgroundColor="white"
                     leftComponent={{
                         icon:"arrow-back",

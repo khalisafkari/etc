@@ -35,7 +35,7 @@ const NewManga = () => {
             >
                 <Image
                     source={{ uri: `https://verdauen.com/lhscan/?id=${item.images}` }}
-                    style={{ height: 140, width: '100%' }}
+                    style={{ height: 160, width: '100%' }}
                 />
                 <LinearGradient
                     colors={['transparent', 'black']}
@@ -44,7 +44,7 @@ const NewManga = () => {
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: 140
+                        height: 160
                     }}
                 />
                 <View style={{ position: 'absolute', padding: 4, height: '100%', width: '100%', justifyContent: 'flex-end' }}>

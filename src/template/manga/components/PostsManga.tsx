@@ -12,6 +12,7 @@ import manga from '../../../utils/manga';
 import { ADD_HISTORY_MANGA, ADD_BOOKMARK_MANGA } from '../../../store/manga';
 import { Text, Image, Button, Icon } from 'react-native-elements';
 import { material } from 'react-native-typography';
+import Bookmark from '../../../components/Bookmark';
 
 const PostsManga = () => {
 
@@ -87,12 +88,13 @@ const PostsManga = () => {
                         color="blue"
                         onPress={() => console.log('pres')}
                     /> */}
-                    <Icon
+                    {/* <Icon
                         name="favorite-border"
                         type="material-icons"
                         color="blue"
                         onPress={() => addBookmark(navigation.getParam('id'))}
-                    />
+                    /> */}
+                    <Bookmark id={navigation.getParam('id')}/>
                     <Icon
                         name="share"
                         type="material-icons"

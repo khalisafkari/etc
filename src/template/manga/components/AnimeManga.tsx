@@ -67,7 +67,7 @@ const AnimeManga = () => {
                 <Image
                     source={{ uri: `https://verdauen.com/lhscan/?id=${item.images}` }}
                     style={{
-                        height: 220,
+                        height: 200,
                         width: 140
                     }}
                 />

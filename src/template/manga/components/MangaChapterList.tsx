@@ -29,16 +29,6 @@ const MangaChapterList = () => {
                     //@ts-ignore
                     <MangaDownload 
                         data={{id:item.id,download:item.download,index}} />)}
-                    // rightElement={(
-                    //     <View style={{flexDirection:'row'}}>
-                    //         <Icon
-                    //             name="ios-arrow-forward"
-                    //             type="ionicon"
-                    //             size={15}
-                    //             color={state.ChapterHistory[item.id] ? 'black' : 'rgb(0, 0, 255)'} />
-                    //        <ActivityIndicator/>
-                    //     </View>
-                    // )}
                 />
             </TouchableOpacity>
         </View>
@@ -46,6 +36,7 @@ const MangaChapterList = () => {
 
     const onRead = (id: string) => {
         dispatch({ type: ADD_HISTORY_CHAPTER, payload: { [`${id}`]: true } })
+        navigation.navigate('MangaRead',{id})
     }
 
     const key = (item, index) => item + index
