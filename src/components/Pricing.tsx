@@ -77,6 +77,7 @@ class Pricing extends React.Component<any, any> {
         )
     }
 
+
     private renderItem = (item) => (
         <View key={item.productId}>
             <TouchableOpacity
