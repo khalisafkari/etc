@@ -95,7 +95,7 @@ const TabsManga = createBottomTabNavigator({
   }
 }, {
     //@ts-ignore
-    // initialRouteName: 'Profile',
+    initialRouteName: 'Profile',
     //@ts-ignore
     tabBarOptions: {
       showLabel: false,

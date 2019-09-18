@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
-import {NavigationStackProp,NavigationStackScreenProps} from 'react-navigation-stack'
+import { NavigationStackProp, NavigationStackScreenProps } from 'react-navigation-stack'
+import Pricing from '../../components/Pricing';
 
 interface Props {
-    navigation:NavigationStackProp<NavigationStackScreenProps>
+    navigation: NavigationStackProp<NavigationStackScreenProps>
 }
 
 class ProfileHome extends Component<Props> {
@@ -14,8 +15,9 @@ class ProfileHome extends Component<Props> {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'black' }}>
-                <Header/>
+                <Header />
                 {this.renderContent()}
+                <Pricing/>
             </View>
         )
     }
@@ -25,21 +27,21 @@ class ProfileHome extends Component<Props> {
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileHistory')}
             >
-            <ListItem
-                containerStyle={{
-                    backgroundColor: 'rgba(160, 179, 176, 0.25)'
-                }}
-                leftIcon={{
-                    name: "history",
-                    color: "#a0b3b0",
-                    size: 20
-                }}
-                title="History"
-                titleStyle={{
-                    color: "#a0b3b0"
-                }}
-                rightSubtitle="10"
-            />
+                <ListItem
+                    containerStyle={{
+                        backgroundColor: 'rgba(160, 179, 176, 0.25)'
+                    }}
+                    leftIcon={{
+                        name: "history",
+                        color: "#a0b3b0",
+                        size: 20
+                    }}
+                    title="History"
+                    titleStyle={{
+                        color: "#a0b3b0"
+                    }}
+                    rightSubtitle="10"
+                />
             </TouchableOpacity>
             <ListItem
                 containerStyle={{
@@ -60,22 +62,22 @@ class ProfileHome extends Component<Props> {
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileBookmark')}
             >
-            <ListItem
-                containerStyle={{
-                    backgroundColor: 'rgba(160, 179, 176, 0.25)'
-                }}
-                leftIcon={{
-                    name: "bookmark",
-                    color: "#a0b3b0",
-                    type: "feather",
-                    size: 20
-                }}
-                title="My bookmark"
-                titleStyle={{
-                    color: "#a0b3b0"
-                }}
-                rightSubtitle="10"
-            />
+                <ListItem
+                    containerStyle={{
+                        backgroundColor: 'rgba(160, 179, 176, 0.25)'
+                    }}
+                    leftIcon={{
+                        name: "bookmark",
+                        color: "#a0b3b0",
+                        type: "feather",
+                        size: 20
+                    }}
+                    title="My bookmark"
+                    titleStyle={{
+                        color: "#a0b3b0"
+                    }}
+                    rightSubtitle="10"
+                />
             </TouchableOpacity>
         </View>
     )

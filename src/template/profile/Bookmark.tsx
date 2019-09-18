@@ -2,14 +2,24 @@ import React from 'react'
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import BookmarkCP from './component/BookmarkCP';
+import { Header } from 'react-native-elements';
 
 class ProfileBookmark extends React.Component<any>{
-    componentDidMount(){
-        console.log(this.props)
+
+    static navigationOptions = {
+        header:null
     }
+
     render(){
         return(
             <View style={{flex:1}}>
+                <Header
+                    backgroundColor="black"
+                    leftComponent={{
+                        icon:"arrow-back",
+                        onPress:()=>this.props.navigation.goBack()
+                    }}
+                />
                 <FlatList
                     data={Object.keys(this.props.state)}
                     renderItem={this.renderItem}
