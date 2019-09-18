@@ -34,3 +34,14 @@ export const ILManga = (props):any => {
     )
 }
 
+export const PRofile = (props):any => {
+    return(
+        <Icon
+        name="user"
+        color={props.tintColor}
+        size={25}
+        type="feather"
+    />
+    )
+}
+

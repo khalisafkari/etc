@@ -16,6 +16,7 @@ import {
     , SearchComponentManga
 } from './components/SearchComponent'
 import genre from '../../utils/genre';
+import AdmobBanner from '../../components/Admob';
 
 
 interface State {
@@ -87,6 +88,7 @@ class MangaSearch extends Component<any, State>{
                 ) : (<SectionList
                     sections={[
                         { title: 'Manga', data: [this.manga] },
+                        {title:'ads',data:[this.ads]},
                         { title: 'Anime', data: [this.anime] }
                     ]}
                     keyExtractor={this.key}
@@ -127,7 +129,7 @@ class MangaSearch extends Component<any, State>{
     }
 
     private renderManga = ({ item }) => (<SearchComponentManga {...item} />)
-
+    private ads = () => (<AdmobBanner/>)
     private renderAnime = ({ item }) => (<SearchComponentAnime {...item} />)
 }
 

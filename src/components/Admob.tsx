@@ -1,5 +1,5 @@
 import React from 'react'
-import firebase from 'react-native-firebase'
+// import firebase from 'react-native-firebase'
 
 //@ts-ignore
 const Banner = firebase.admob.Banner;
@@ -16,6 +16,7 @@ const AdmobBanner = () => {
             request={request.build()}
         />
     )
+    // return null;
 }
 
 export default AdmobBanner;

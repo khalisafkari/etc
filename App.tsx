@@ -4,16 +4,21 @@ import { MangaApi } from './serve';
 import Navigation from './src/navigation';
 
 import {Provider} from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
 import store from './src/store';
+
 
 
 export default class App extends React.Component{
   render(){
     return(
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
       <ApolloProvider client={MangaApi}>
           <Navigation/>
       </ApolloProvider>
+      </PersistGate>
       </Provider>
     )
   }
