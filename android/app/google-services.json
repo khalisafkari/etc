@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "164641778056",
+    "firebase_url": "https://westmanga-d528a.firebaseio.com",
+    "project_id": "westmanga-d528a",
+    "storage_bucket": "westmanga-d528a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164641778056:android:d539d3f4294eb407",
+        "android_client_info": {
+          "package_name": "com.west.info2019"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164641778056-hg1kip01a3cfeu79rh3j8o32d6k80aa2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.west.info2019",
+            "certificate_hash": "4615ad2087bddf8e6bbe7e2257d1440279d7f6db"
+          }
+        },
+        {
+          "client_id": "164641778056-p0e1evoph4l3cbtm88s41b577dn48l9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALXVQssFL39rS9KkBCy8RjrceUr0gYP5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164641778056-p0e1evoph4l3cbtm88s41b577dn48l9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
