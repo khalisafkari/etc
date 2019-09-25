@@ -25,7 +25,11 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, store)
 
-export default createStore(
+const save = createStore(
     persistedReducer,
     //@ts-ignore
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+
+
+export default save;
