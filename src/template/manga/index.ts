@@ -1,0 +1,6 @@
+export {default as MangaHome} from './Home'
+export {default as MangaLibrary} from './Library'
+export {default as MangaSearch} from './Search'
+export {default as MangaGenre} from './genre'
+export {default as MangaPosts} from './Posts'
+export {default as MangaRead} from './Read'

@@ -1,19 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { ApolloProvider } from '@apollo/react-hooks';
+import { MangaApi } from './serve';
+import Navigation from './src/navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
+import store from './src/store';
+import Westmanga from './src/utils/Westmanga';
+
+
+
+export default class App extends React.Component {
+  
+  render() {
+    return (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistStore(store)}>
+          <ApolloProvider client={MangaApi}>
+            <Westmanga>
+              <Navigation/>
+            </Westmanga>
+          </ApolloProvider>
+        </PersistGate>
+      </Provider>
+    )
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
