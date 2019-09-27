@@ -1,13 +1,25 @@
 interface store {
+    email:string
     premium:boolean
 }
 
 const store:store = {
-    premium:true
+    email:'',
+    premium:false
 }
 
 export const accounts = (state = store,actions)=>{
-    return {
-        ...state
+    switch (actions.type) {
+        case "SET_ACCOUNTS":
+            console.log({
+                ...state,
+                ...actions.payload
+            })
+            return {
+                ...state,
+                ...actions.payload
+            }
+        default:
+            return state
     }
 }
