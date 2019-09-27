@@ -48,7 +48,6 @@ class Firebase {
         },
         async Get(email:string){
             const data = Fire.firestore().collection('users')
-            .doc(email)
             return data.get()
         }
     }

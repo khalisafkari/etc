@@ -61,22 +61,15 @@ class Form extends React.Component<any, any>{
         if(email && password){
             firebase.Auth.login(email,password)
             .then(res=>{
-                //@ts-ignore
-                firebase.firestore.Get(email).then(response=>{
-                    this.props.accounts({
-                        email,
-                        //@ts-ignore
-                        premium:response.data().status
-                    })
-                    this.props.navigation.navigate('Manga')
-                })
+               this.props.navigation.navigate('Manga')
+               this.props.accounts({email})
             }).catch((err)=>{
-                console.log(err)
-                //Alert.alert('Error','Email / Password Not Valid')
+               
+                Alert.alert('Error','Email / Password Not Valid')
             })
         }else{
-            console.log('Not Valid')
-           // Alert.alert('Ups!!!','Not Valid Data')
+        //console.log('Not Valid')
+           Alert.alert('Ups!!!','Not Valid Data')
         }
     }
 }
