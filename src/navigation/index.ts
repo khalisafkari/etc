@@ -164,6 +164,8 @@ const Switch = createSwitchNavigator({
   Manga: TabsManga,
   Anime: TabsAnime,
   Novel: TabsNovel
+},{
+  initialRouteName:"Secure"
 })
 
 
