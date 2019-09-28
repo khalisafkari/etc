@@ -29,6 +29,7 @@ import expo.modules.filesystem.FileSystemPackage;
 
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage(),
           new RNFirebaseAuthPackage(),
+          new RNFirebaseFirestorePackage(),
           new ReactNativeOneSignalPackage(),
           new PDFViewPackage(),
           new RNCWebViewPackage(),

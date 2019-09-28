@@ -19,22 +19,15 @@ const Logo = () => {
 const styles = StyleSheet.create({
 
     container: {
-
         flexGrow: 1,
-
         justifyContent: 'flex-end',
-
         alignItems: 'center'
-
     },
 
     logoText: {
-
         marginVertical: 15,
-
-        fontSize: 18,
-
-        color: 'rgba(255, 255, 255, 0.7)'
+        fontSize: 13,
+        color: 'rgba(0, 0, 0, 0.7)'
 
     }
 

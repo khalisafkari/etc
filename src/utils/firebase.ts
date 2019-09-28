@@ -1,20 +1,20 @@
-// import * as Fire from 'firebase'
-// import 'firebase/auth'
-// import 'firebase/firestore'
-import Fire from 'react-native-firebase'
+import * as Fire from 'firebase'
+import 'firebase/auth'
+import 'firebase/firestore'
+// import Fire from 'react-native-firebase'
 import { Alert } from 'react-native';
 
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyDXV44fau6ezjL4qmewNsqT2x8oafLa9IQ",
-//     authDomain: "westmanga-d528a.firebaseapp.com",
-//     databaseURL: "https://westmanga-d528a.firebaseio.com",
-//     projectId: "westmanga-d528a",
-//     storageBucket: "westmanga-d528a.appspot.com",
-//     messagingSenderId: "164641778056",
-//     appId: "1:164641778056:web:29dcc23d71404645"
-// };
-// Fire.initializeApp(firebaseConfig);
+const firebaseConfig = {
+    apiKey: "AIzaSyDXV44fau6ezjL4qmewNsqT2x8oafLa9IQ",
+    authDomain: "westmanga-d528a.firebaseapp.com",
+    databaseURL: "https://westmanga-d528a.firebaseio.com",
+    projectId: "westmanga-d528a",
+    storageBucket: "westmanga-d528a.appspot.com",
+    messagingSenderId: "164641778056",
+    appId: "1:164641778056:web:29dcc23d71404645"
+};
+Fire.initializeApp(firebaseConfig);
 
 
 class Firebase {

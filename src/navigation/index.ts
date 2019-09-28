@@ -14,7 +14,9 @@ import {
   ILManga,
   PRofile
 } from './Icon'
-import {Auth, Login} from '../template/auth/auth';
+import {
+  Auth as Login,
+  SignUp as Daftar } from '../template/auth/auth';
 
 const HomeManga = createStackNavigator({
   MangaHome: MangaHome,
@@ -155,8 +157,8 @@ const TabsNovel = createBottomTabNavigator({
 
 
 const Secure = createStackNavigator({
-  Auth:Auth,
-  Login:Login
+  Login:Login,
+  Daftar:Daftar
 })
 
 const Switch = createSwitchNavigator({

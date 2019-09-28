@@ -1,17 +1,27 @@
 import React from 'react'
-import { View, StyleSheet, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Alert } from 'react-native';
-import { Input } from 'react-native-elements';
+import {
+    View,
+    StyleSheet,
+    ActivityIndicator,
+    TouchableOpacity,
+    Text,
+    KeyboardAvoidingView,
+    Alert
+} from 'react-native';
+import { Input, Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
 import firebase from '../../utils/firebase'
+import RNFirebase from '../../utils/RNFirebase'
 
 class Form extends React.Component<any, any>{
 
     private password = null;
 
     state = {
-        email:'',
-        password:''
+        email: '',
+        password: '',
+        loading: false
     }
 
     render() {
@@ -24,8 +34,8 @@ class Form extends React.Component<any, any>{
                             borderBottomWidth: 0
                         }}
                         value={this.state.email}
-                        onChangeText={email => this.setState({email})}
-                        inputStyle={{fontSize:16}}
+                        onChangeText={email => this.setState({ email })}
+                        inputStyle={{ fontSize: 16 }}
                         underlineColorAndroid='rgba(0,0,0,0)'
                         placeholder="Email"
                         placeholderTextColor="#ffffff"
@@ -44,32 +54,68 @@ class Form extends React.Component<any, any>{
                         placeholderTextColor="#ffffff"
                         ref={(input) => this.password = input}
                         value={this.state.password}
-                        onChangeText={password => this.setState({password})}
+                        onChangeText={password => this.setState({ password })}
                     />
-                    <TouchableOpacity style={styles.button}
-                        onPress={this.sigIn}
-                    >
-                        <Text style={styles.buttonText}>{this.props.type}</Text>
-                    </TouchableOpacity>
+                    {
+                        this.props.type === "Login" ? (
+                            <Button
+                                title={this.props.type}
+                                type="clear"
+                                titleStyle={styles.buttonText}
+                                containerStyle={styles.button}
+                                onPress={this.Login}
+                                loading={this.state.loading}
+                            />
+                        ) : (
+                                <Button
+                                    title={this.props.type}
+                                    type="clear"
+                                    titleStyle={styles.buttonText}
+                                    containerStyle={styles.button}
+                                    onPress={this.SignUp}
+                                    loading={this.state.loading}
+                                />
+                            )
+                    }
                 </KeyboardAvoidingView>
             </View>
         )
     }
 
-    private sigIn = () => {
-        const {email,password} = this.state;
+    private Login = () => {
+        const { email, password } = this.state;
+        this.setState({loading:true});
         if(email && password){
-            firebase.Auth.login(email,password)
-            .then(res=>{
-               this.props.navigation.navigate('Manga')
-               this.props.accounts({email})
-            }).catch((err)=>{
-               
-                Alert.alert('Error','Email / Password Not Valid')
+            RNFirebase.login({
+                email,
+                password
+            }).then(response=>{
+                this.props.navigation.navigate('Manga')
+                //@ts-ignore
+                this.props.accounts({ email,premium:response.status })
+                this.setState({loading:false});
+            }).catch((error)=>{
+                this.setState({loading:false});
             })
         }else{
-        //console.log('Not Valid')
-           Alert.alert('Ups!!!','Not Valid Data')
+            Alert.alert('Errors','Kamu terlalu sombong');
+            this.setState({loading:false});
+        }
+    }
+
+    private SignUp = () => {
+        const { email, password } = this.state;
+        this.setState({loading:true})
+        if(email && password){
+            RNFirebase.register({email,password}).then(()=>{
+                this.props.navigation.navigate('Login');
+                this.setState({loading:false})
+            }).catch(()=>{
+                this.setState({loading:false})
+            })
+        }else{
+            Alert.alert('Erros','Tak Kenal Maka Tak Sayang')
+            this.setState({loading:false})
         }
     }
 }
@@ -81,24 +127,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
-
-
     inputBox: {
-
         width: 300,
-
-        backgroundColor: 'rgba(255, 255,255,0.2)',
-
+        backgroundColor: 'rgba(0,0,0,.5)',
         borderRadius: 25,
-
         paddingHorizontal: 16,
-
         fontSize: 16,
-
         color: '#ffffff',
-
         marginVertical: 10
-
     },
 
     button: {
@@ -129,13 +165,13 @@ const styles = StyleSheet.create({
 })
 
 const mapState = state => ({
-    state:state.accounts
+    state: state.accounts
 })
 
 const mapProps = dispatch => ({
-    accounts:(data:any)=> dispatch({type:"SET_ACCOUNTS",payload:data})
+    accounts: (data: any) => dispatch({ type: "SET_ACCOUNTS", payload: data })
 })
 
-const data = connect(mapState,mapProps)(Form)
+const data = connect(mapState, mapProps)(Form)
 //@ts-ignore
 export default withNavigation(data)
