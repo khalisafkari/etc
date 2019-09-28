@@ -16,7 +16,10 @@ import {
 } from './Icon'
 import {
   Auth as Login,
-  SignUp as Daftar } from '../template/auth/auth';
+  SignUp as Daftar
+} from '../template/auth/auth';
+
+import Load from '../loading'
 
 const HomeManga = createStackNavigator({
   MangaHome: MangaHome,
@@ -162,12 +165,13 @@ const Secure = createStackNavigator({
 })
 
 const Switch = createSwitchNavigator({
+  Loading:Load,
   Secure:Secure,
   Manga: TabsManga,
   Anime: TabsAnime,
   Novel: TabsNovel
 },{
-  initialRouteName:"Secure"
+  initialRouteName:"Loading"
 })
 
 
