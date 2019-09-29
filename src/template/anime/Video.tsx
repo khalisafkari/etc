@@ -31,7 +31,11 @@ class VideoAnime extends React.Component<any,any>{
                     }}
                     width='100%'
                     height={240}
-                    startFullscreen={true}   
+                    startFullscreen={true}  
+                    showBackIcon={true}
+                    onBack={e => {
+                        this.props.navigation.goBack()
+                    }} 
                 />
             </View>
         )
