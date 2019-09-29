@@ -11,7 +11,7 @@ import {
 import { Input, Button } from 'react-native-elements';
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
-//import RNFirebase from '../../utils/firebase'
+// import RNFirebase from '../../utils/firebase'
 import RNFirebase from '../../utils/RNFirebase'
 
 class Form extends React.Component<any, any>{

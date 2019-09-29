@@ -17,7 +17,7 @@ class ProfileHome extends Component<Props> {
             <View style={{ flex: 1, backgroundColor: 'black' }}>
                 <Header />
                 {this.renderContent()}
-                <Pricing/>
+                {/* <Pricing/> */}
             </View>
         )
     }
@@ -40,7 +40,7 @@ class ProfileHome extends Component<Props> {
                     titleStyle={{
                         color: "#a0b3b0"
                     }}
-                    rightSubtitle="10"
+                    
                 />
             </TouchableOpacity>
             <ListItem
@@ -57,7 +57,7 @@ class ProfileHome extends Component<Props> {
                 titleStyle={{
                     color: "#a0b3b0"
                 }}
-                rightSubtitle="10"
+                
             />
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileBookmark')}
