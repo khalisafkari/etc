@@ -3,6 +3,8 @@ package com.west.info2019;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.wonday.orientation.OrientationPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.rumax.reactnative.pdfviewer.PDFViewPackage;
@@ -50,6 +52,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new OrientationPackage(),
+            new LinearGradientPackage(),
           new RNFirebasePackage(),
           new RNFirebaseAnalyticsPackage(),
           new RNFirebaseAuthPackage(),

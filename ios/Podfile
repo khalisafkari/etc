@@ -40,4 +40,11 @@ target 'westmanga' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+
+
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
 end
