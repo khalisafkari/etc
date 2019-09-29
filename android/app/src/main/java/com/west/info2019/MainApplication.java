@@ -9,7 +9,6 @@ import io.invertase.firebase.RNFirebasePackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.rumax.reactnative.pdfviewer.PDFViewPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;

@@ -167,7 +167,6 @@ dependencies {
     implementation project(':react-native-onesignal')
     implementation project(':react-native-view-pdf')
     implementation project(':react-native-webview')
-    implementation project(':react-native-video')
     implementation project(':react-native-screens')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-gesture-handler')
