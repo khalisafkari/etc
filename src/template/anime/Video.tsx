@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native';
-
 import {useNavigation} from 'react-navigation-hooks'
 import anime from '../../utils/anime';
 import IVideo from 'react-native-ivideo';
