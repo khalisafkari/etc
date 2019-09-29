@@ -31,7 +31,7 @@ class MangaHome extends Component{
                         {title:'Manga',data:[this.NewManga]},
                         {title:'Ads',data:[this.ads]},
                         {title:'Anime',data:[this.Anime]},
-                        {title:'Novel',data:[this.Novel]}
+                        // {title:'Novel',data:[this.Novel]}
                     ]}
                     renderItem={this.renderItem}
                 />
@@ -43,7 +43,7 @@ class MangaHome extends Component{
     private NewManga = () => (<NewManga/>);
     private ads = () => (<AdmobBanner/>)
     private Anime = () => (<AnimeManga/>)
-    private Novel = () => (<NovelManga/>)
+    // private Novel = () => (<NovelManga/>)
 }
 
 
