@@ -32,7 +32,7 @@ const AdmobOnPosts = () => {
 }
 
 const AdmobOnSearch = () => {
-    @ts-ignore
+    //@ts-ignore
     const state = useSelector(state => state.accounts);
     if (state.premium) {
         return null
