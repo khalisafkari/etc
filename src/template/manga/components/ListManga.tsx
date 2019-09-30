@@ -10,12 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from 'react-native-elements';
 import { material, materialColors } from 'react-native-typography';
 
-import {
-    Placeholder,
-    PlaceholderMedia,
-    PlaceholderLine,
-    Fade
-} from "rn-placeholder";
+
 
 import { useNavigation } from 'react-navigation-hooks'
 

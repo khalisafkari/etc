@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
 import { NavigationStackProp, NavigationStackScreenProps } from 'react-navigation-stack'
 import Pricing from '../../components/Pricing';
+import axios from 'axios'
 
 interface Props {
     navigation: NavigationStackProp<NavigationStackScreenProps>
@@ -12,12 +13,13 @@ class ProfileHome extends Component<Props> {
 
     static navigationOptions = { header: null }
 
+
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'black' }}>
                 <Header />
                 {this.renderContent()}
-                {/* <Pricing/> */}
+                <Pricing/>
             </View>
         )
     }
@@ -43,7 +45,7 @@ class ProfileHome extends Component<Props> {
                     
                 />
             </TouchableOpacity>
-            <ListItem
+            {/* <ListItem
                 containerStyle={{
                     backgroundColor: 'rgba(160, 179, 176, 0.25)'
                 }}
@@ -58,7 +60,7 @@ class ProfileHome extends Component<Props> {
                     color: "#a0b3b0"
                 }}
                 
-            />
+            /> */}
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileBookmark')}
             >

@@ -15,6 +15,8 @@ import {
     IAPErrorCode,
 } from 'expo-in-app-purchases';
 import { material } from 'react-native-typography';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Pricing extends React.Component<any, any> {
 
@@ -25,9 +27,12 @@ class Pricing extends React.Component<any, any> {
     }
 
     public componentDidMount = async () => {
+
+        console.log(this.props)
+
         const history = await connectAsync();
         const items = Platform.select({
-            android: ['1_bulan', '1_minggu']
+            android: ['1_bulan']
         })
 
         // Get product details
@@ -43,6 +48,7 @@ class Pricing extends React.Component<any, any> {
                     if (!purchase.acknowledged) {
                         finishTransactionAsync(purchase, true);
                         Alert.alert('Thanks', 'Your Purchase Complete')
+                        axios.get(`https://us-central1-westmanga-d528a.cloudfunctions.net/updatePremium/?id=${this.props.accounts.email}`);
                     }
                 }
             } else if (responseCode === IAPResponseCode.USER_CANCELED) {
@@ -116,4 +122,10 @@ class Pricing extends React.Component<any, any> {
 
 }
 
-export default Pricing;
+const mapState = state => ({
+    accounts:state.accounts
+})
+
+
+
+export default connect(mapState)(Pricing);

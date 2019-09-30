@@ -92,19 +92,21 @@ const PromoAnime = () => {
                     <Text numberOfLines={3} style={[material.caption, { color: materialColors.whiteTertiary }]}>{synopsis}</Text>
                 </View>
             </View>
-           
+
             <TouchableOpacity
                 onPress={() => navigation.navigate('AnimePosts', { id })}
                 style={{ position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                 <Icon name="playcircleo" color="rgba(255,255,255,0.5)" type="antdesign" />
             </TouchableOpacity>
-            <View style={{position:'absolute',top:10,left:5,width:'100%',alignItems:'flex-start',justifyContent:'flex-start'}}>
-                <Icon
-                    name="close"
-                    color="white"
-                    size={30}
-                    onPress={() => navigation.navigate('Manga')}
-                />
+            <View style={{ position: 'absolute', top: 15, left: 5, width: '100%', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+                <View style={{backgroundColor:"rgba(255,255,255,.8)",borderRadius:10}}>
+                    <Icon
+                        name="close"
+                        color="blue"
+                        size={30}
+                        onPress={() => navigation.navigate('Manga')}
+                    />
+                </View>
             </View>
         </View>
     )

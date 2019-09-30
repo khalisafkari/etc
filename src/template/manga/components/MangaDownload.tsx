@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Alert } from 'react-native';
 
 import { connect } from 'react-redux'
-import { Icon, Text, Slider } from 'react-native-elements';
+import { Icon, Text } from 'react-native-elements';
+import * as Filesystem from 'expo-file-system'
 
 class MangaDownload extends Component<any, any>{
 
@@ -11,15 +12,49 @@ class MangaDownload extends Component<any, any>{
         value: 0,
     }
 
+    // componentDidMount() {
+    //     console.log(this.props.data)
+    // }
 
-    private download = (id: string) => {
+
+    // private download = (id: string) => {
+    //     this.setState({ progress: true })
+    //     //@ts-ignore
+    //     this.inteval = setInterval(() => {
+    //         this.setState({
+    //             value: this.state.value + 1
+    //         })
+    //     }, 500)
+    // }
+
+    // private clear = () => {
+    //     //@ts-ignore
+    //     clearInterval(this.inteval)
+    //     return null;
+    // }
+
+    private download = async() => {
         this.setState({ progress: true })
-        //@ts-ignore
-        this.inteval = setInterval(() => {
+        let id = this.props.data.id.replace('https://westmanga.info/','').replace('/','');
+        const callback = downloadprogress => {
+            let progress = downloadprogress.totalBytesWritten / downloadprogress.totalBytesExpectedToWrite;
             this.setState({
-                value: this.state.value + 1
+                value:(progress) * 100
             })
-        }, 500)
+        } 
+
+        const downloadResume = Filesystem
+        .createDownloadResumable(this.props.data.download,Filesystem.documentDirectory + `${id}.pdf`,{},callback);
+
+        try {
+            const {uri} = await downloadResume.downloadAsync();
+            Alert.alert('Success',`Download Success ${uri}`);
+            this.setState({
+                progress:false
+            })
+        } catch (e) {
+            Alert.alert('error',e)
+        }
     }
 
     private clear = () => {
@@ -29,26 +64,18 @@ class MangaDownload extends Component<any, any>{
     }
 
     render() {
-        if (!this.props.accounts.premium) {
-            switch (this.props.data.index) {
-                case 1:
-                    return this.allowDownload()
-                case 2:
-                    return this.allowDownload()
-                default:
-                    return this.ReguireBuy()
-            }
-        }
         return (
-            <View>
-                {this.allowDownload()}
+            <View style={{flexDirection:'row'}}>
+                {this.itemDownload()}
+                {this.checkMark()}
             </View>
         )
     }
 
-    private allowDownload = () => (
-        <View style={{ flexDirection: 'row' }}>
-            {this.state.progress ? (
+
+    private itemDownload = () => {
+        if (this.state.progress) {
+            return(
                 <View>
                     {this.state.value == 100 ? this.clear() : (
                         <View style={{ position: 'relative' }}>
@@ -60,53 +87,38 @@ class MangaDownload extends Component<any, any>{
                     )}
 
                 </View>
-            ) : (
-                    <Icon
-                        containerStyle={{ marginHorizontal: 2 }}
-                        name="ios-download"
-                        type="ionicon"
-                        size={20}
-                        color="rgba(0,0,0,.5)"
-                        onPress={() => this.download(this.props.data.download)}
-                    />
-                )}
-            {
-                this.props.state[this.props.data.id] ? null : (
-                    <Icon
-                        name="dot-single"
-                        type="entypo"
-                        size={20}
-                        containerStyle={{ marginHorizontal: 2 }}
-                        color="red"
-                    />
-                )
-            }
-
-        </View>
-
-    )
-
-    private ReguireBuy = () => (
-        <View style={{ flexDirection: 'row' }}>
+            )
+        } else {
+           return(
             <Icon
-                name="dollar"
-                type="foundation"
+                containerStyle={{ marginHorizontal: 2 }}
+                name="ios-download"
+                type="ionicon"
                 size={20}
-                color="yellow"
+                color="rgba(0,0,0,.5)"
+                onPress={() => this.download()}
             />
-            {
-                this.props.state[this.props.data.id] ? null : (
-                    <Icon
-                        name="dot-single"
-                        type="entypo"
-                        size={20}
-                        containerStyle={{ marginHorizontal: 2 }}
-                        color="red"
-                    />
-                )
-            }
-        </View>
-    )
+           )
+        }
+    }
+
+    private checkMark = () => {
+        return (
+            <View>
+                {
+                    this.props.state[this.props.data.id] ? null : (
+                        <Icon
+                            name="dot-single"
+                            type="entypo"
+                            size={20}
+                            containerStyle={{ marginHorizontal: 2 }}
+                            color="red"
+                        />
+                    )
+                }
+            </View>
+        )
+    }
 
     // render() {
     //     switch (this.props.data.index) {
@@ -177,9 +189,13 @@ class MangaDownload extends Component<any, any>{
     // }
 }
 
-const mapProps = state => ({
+const mapState = state => ({
     state: state.manga.ChapterHistory,
     accounts: state.accounts
 })
 
-export default connect(mapProps)(MangaDownload)
+// const mapProps = dispatch => ({
+//     set_download:(id:string)=>dispatch({type:"SET_DOWNLOAD",payload:})
+// })
+
+export default connect(mapState)(MangaDownload)

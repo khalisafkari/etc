@@ -65,6 +65,17 @@ class RNFirebase{
         })
     }
 
+    async onCheck(cb){
+        this.onChange((data)=>{
+            firebase.firestore().collection('users').doc(data.email).get()
+            .then((res)=>{
+                cb(res.data())
+            }).catch((er)=>{
+                console.log(er)
+            })
+        })
+    }
+
 }
 
 export default new RNFirebase();

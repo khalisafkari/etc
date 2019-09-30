@@ -2,38 +2,46 @@ import React from 'react'
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import HistoryCP from './component/HistoryCP';
-import { Header } from 'react-native-elements';
+import { Header, Text } from 'react-native-elements';
 
 class ProfileHistory extends React.Component<any>{
 
     static navigationOptions = {
-        header:null
+        header: null
     }
 
-    render(){
-        return(
-            <View style={{flex:1}}>
+
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
                 <Header
                     backgroundColor="black"
                     leftComponent={{
-                        icon:"arrow-back",
-                        onPress:()=>this.props.navigation.goBack()
+                        icon: "arrow-back",
+                        onPress: () => this.props.navigation.goBack()
                     }}
                 />
-                <FlatList
-                    data={Object.keys(this.props.History)}
-                    renderItem={this.renderItem}
-                    numColumns={3}
-                />
+                {Object.keys(this.props.History) ? (
+                    <FlatList
+                        data={Object.keys(this.props.History)}
+                        renderItem={this.renderItem}
+                        numColumns={3}
+                    />
+                ) : (
+                    <View style={{justifyContent:'center',alignItems:'center'}}>
+                        <Text>Belum Ada History</Text>
+                    </View>
+                )}
             </View>
         )
     }
 
-    private renderItem = ({item}) => (<HistoryCP id={item} />)
+    private renderItem = ({ item }) => (<HistoryCP id={item} />)
 }
 
 const mapProps = state => ({
-    History:state.manga.History
+    History: state.manga.History
 })
 
 export default connect(mapProps)(ProfileHistory);
