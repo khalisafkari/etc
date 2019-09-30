@@ -1,4 +1,5 @@
 import React from 'react'
+import {YellowBox} from 'react-native'
 import { ApolloProvider } from '@apollo/react-hooks';
 import { MangaApi } from './serve';
 import Navigation from './src/navigation';
@@ -8,7 +9,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import store from './src/store';
 import Westmanga from './src/utils/Westmanga';
-
 
 
 export default class App extends React.Component {

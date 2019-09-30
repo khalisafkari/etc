@@ -27,9 +27,6 @@ class Pricing extends React.Component<any, any> {
     }
 
     public componentDidMount = async () => {
-
-        console.log(this.props)
-
         const history = await connectAsync();
         const items = Platform.select({
             android: ['1_bulan']

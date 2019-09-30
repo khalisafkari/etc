@@ -7,22 +7,21 @@ import { Header } from 'react-native-elements';
 import { AdmobOnPosts } from '../../components/AdmobOnPosts';
 
 
-class MangaPosts extends Component<any,any> {
+class MangaPosts extends Component<any, any> {
 
     static navigationOptions = {
-        header:null
+        header: null
     }
-
 
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
                 <Header
-                    statusBarProps={{barStyle:"light-content",translucent:true}}
+                    statusBarProps={{ barStyle: "light-content", translucent: true }}
                     backgroundColor="white"
                     leftComponent={{
-                        icon:"arrow-back",
-                        onPress:()=>this.props.navigation.goBack()
+                        icon: "arrow-back",
+                        onPress: () => this.props.navigation.goBack()
                     }}
                     centerComponent={{
 
@@ -30,10 +29,10 @@ class MangaPosts extends Component<any,any> {
                 />
                 <SectionList
                     sections={[
-                        {title:"Banner",data:[this.Banner]},
-                        {title:'Ads',data:[this.ads]},
-                        {title:"Synopsis",data:[this.Synopsis]},
-                        {title:"Chapter",data:[this.List]}
+                        { title: "Banner", data: [this.Banner] },
+                        { title: 'Ads', data: [this.ads] },
+                        { title: "Synopsis", data: [this.Synopsis] },
+                        { title: "Chapter", data: [this.List] }
                     ]}
                     renderItem={this.renderItem}
                     keyExtractor={this.key}
@@ -42,12 +41,13 @@ class MangaPosts extends Component<any,any> {
         )
     }
 
-    private renderItem = ({item}) => (<View>{item()}</View>)
-    private key = (item,index) => item + index;
+    private renderItem = ({ item }) => (<View>{item()}</View>)
+    private key = (item, index) => item + index;
     private Banner = () => (<PostsManga />)
-    private ads = () => (<AdmobOnPosts/>)
+    private ads = () => (<AdmobOnPosts />)
     private Synopsis = () => (<MangaSynopsis />)
-    private List = () => (<MangaChapterList/>)
+    private List = () => (<MangaChapterList />)
+    
 }
 
 export default MangaPosts;

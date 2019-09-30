@@ -26,6 +26,7 @@ const AdmobBanner = () => {
             />
         )
     }
-}
+    // return null
+} 
 
 export default AdmobBanner;

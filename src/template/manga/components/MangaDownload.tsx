@@ -10,50 +10,38 @@ class MangaDownload extends Component<any, any>{
     state = {
         progress: false,
         value: 0,
+        show: true,
     }
 
-    // componentDidMount() {
-    //     console.log(this.props.data)
-    // }
-
-
-    // private download = (id: string) => {
-    //     this.setState({ progress: true })
-    //     //@ts-ignore
-    //     this.inteval = setInterval(() => {
-    //         this.setState({
-    //             value: this.state.value + 1
-    //         })
-    //     }, 500)
-    // }
-
-    // private clear = () => {
-    //     //@ts-ignore
-    //     clearInterval(this.inteval)
-    //     return null;
-    // }
-
-    private download = async() => {
+    private download = async () => {
         this.setState({ progress: true })
-        let id = this.props.data.id.replace('https://westmanga.info/','').replace('/','');
+        let Folder = this.props.data.nav.replace('https://westmanga.info/manga/', '').replace('/', '').replace(/-/g, ' ')
+        Filesystem.makeDirectoryAsync(Filesystem.documentDirectory + `${Folder}`)
+        this.goTo()
+    }
+
+    private goTo = async () => {
+        let id = this.props.data.id.replace('https://westmanga.info/', '').replace('/', '');
+        let Folder = this.props.data.nav.replace('https://westmanga.info/manga/', '').replace('/', '').replace(/-/g, ' ')
         const callback = downloadprogress => {
             let progress = downloadprogress.totalBytesWritten / downloadprogress.totalBytesExpectedToWrite;
             this.setState({
-                value:(progress) * 100
+                value: (progress) * 100
             })
-        } 
+        }
 
         const downloadResume = Filesystem
-        .createDownloadResumable(this.props.data.download,Filesystem.documentDirectory + `${id}.pdf`,{},callback);
+            .createDownloadResumable(this.props.data.download, Filesystem.documentDirectory + `${Folder}/${id}.pdf`, {}, callback);
 
         try {
-            const {uri} = await downloadResume.downloadAsync();
-            Alert.alert('Success',`Download Success ${uri}`);
+            const { uri } = await downloadResume.downloadAsync();
+            Alert.alert('Success', `Download Success ${uri}`);
             this.setState({
-                progress:false
+                progress: false,
+                show: false
             })
         } catch (e) {
-            Alert.alert('error',e)
+            Alert.alert('error', e)
         }
     }
 
@@ -65,7 +53,7 @@ class MangaDownload extends Component<any, any>{
 
     render() {
         return (
-            <View style={{flexDirection:'row'}}>
+            <View style={{ flexDirection: 'row' }}>
                 {this.itemDownload()}
                 {this.checkMark()}
             </View>
@@ -75,13 +63,13 @@ class MangaDownload extends Component<any, any>{
 
     private itemDownload = () => {
         if (this.state.progress) {
-            return(
+            return (
                 <View>
-                    {this.state.value == 100 ? this.clear() : (
+                    {this.state.value == 100 ? null : (
                         <View style={{ position: 'relative' }}>
                             <ActivityIndicator size={30} />
                             <View style={{ position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ fontSize: 8 }}>{this.state.value}%</Text>
+                                <Text style={{ fontSize: 8 }}>{this.state.value.toFixed(2)}%</Text>
                             </View>
                         </View>
                     )}
@@ -89,16 +77,21 @@ class MangaDownload extends Component<any, any>{
                 </View>
             )
         } else {
-           return(
-            <Icon
-                containerStyle={{ marginHorizontal: 2 }}
-                name="ios-download"
-                type="ionicon"
-                size={20}
-                color="rgba(0,0,0,.5)"
-                onPress={() => this.download()}
-            />
-           )
+            return (
+                <View>
+                    {this.state.show ? (
+                        <Icon
+                        containerStyle={{ marginHorizontal: 2 }}
+                        name="ios-download"
+                        type="ionicon"
+                        size={20}
+                        color="rgba(0,0,0,.5)"
+                        // onPress={() => this.download()}
+                        onPress={() => this.download()}
+                    />
+                    ):null}
+                </View>
+            )
         }
     }
 
@@ -120,73 +113,6 @@ class MangaDownload extends Component<any, any>{
         )
     }
 
-    // render() {
-    //     switch (this.props.data.index) {
-    //         case 0:
-    //             return (
-    //                 <View style={{ flexDirection: 'row' }}>
-    //                     {this.state.progress ? (
-    //                         <View>
-    //                             {this.state.value == 100 ? this.clear() : (
-    //                                 <View style={{ position: 'relative' }}>
-    //                                     <ActivityIndicator size={30} />
-    //                                     <View style={{ position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-    //                                         <Text style={{ fontSize: 8 }}>{this.state.value}%</Text>
-    //                                     </View>
-    //                                 </View>
-    //                             )}
-
-    //                         </View>
-    //                     ) : (
-    //                             <Icon
-    //                                 containerStyle={{ marginHorizontal: 2 }}
-    //                                 name="ios-download"
-    //                                 type="ionicon"
-    //                                 size={20}
-    //                                 color="rgba(0,0,0,.5)"
-    //                                 onPress={() => this.download(this.props.data.download)}
-    //                             />
-    //                         )}
-    //                     {
-    //                         this.props.state[this.props.data.id] ? null : (
-    //                             <Icon
-    //                                 name="dot-single"
-    //                                 type="entypo"
-    //                                 size={20}
-    //                                 containerStyle={{ marginHorizontal: 2 }}
-    //                                 color="red"
-    //                             />
-    //                         )
-    //                     }
-
-    //                 </View>
-    //             )
-    //         default:
-    //             return this.props.accounts.premium ? null : (
-    //                 <View style={{ flexDirection: 'row' }}>
-    //                     <Icon
-    //                         name="dollar"
-    //                         type="foundation"
-    //                         size={20}
-    //                         color="yellow"
-    //                     />
-    //                     {
-    //                         this.props.state[this.props.data.id] ? null : (
-    //                             <Icon
-    //                                 name="dot-single"
-    //                                 type="entypo"
-    //                                 size={20}
-    //                                 containerStyle={{ marginHorizontal: 2 }}
-    //                                 color="red"
-    //                             />
-    //                         )
-    //                     }
-    //                 </View>
-    //             )
-
-
-    //     }
-    // }
 }
 
 const mapState = state => ({
@@ -194,8 +120,8 @@ const mapState = state => ({
     accounts: state.accounts
 })
 
-// const mapProps = dispatch => ({
-//     set_download:(id:string)=>dispatch({type:"SET_DOWNLOAD",payload:})
-// })
+const mapProps = dispatch => ({
+    set_download: (data) => dispatch({ type: "SET_DOWNLOAD", payload: data })
+})
 
-export default connect(mapState)(MangaDownload)
+export default connect(mapState, mapProps)(MangaDownload)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, ActivityIndicator } from 'react-native';
 import anime from '../../utils/anime';
-// import IVideo from 'react-native-ivideo';
+import IVideo from 'react-native-ivideo';
 
 class VideoAnime extends React.Component<any,any>{
 
@@ -25,7 +25,7 @@ class VideoAnime extends React.Component<any,any>{
         }
         return(
             <View style={{flex:1}}>
-                {/* <IVideo
+                <IVideo
                     source={{
                         uri:this.state.video
                     }}
@@ -36,7 +36,7 @@ class VideoAnime extends React.Component<any,any>{
                     onBack={e => {
                         this.props.navigation.goBack()
                     }} 
-                /> */}
+                />
             </View>
         )
     }

@@ -7,19 +7,48 @@ import * as IntentLauncher from 'expo-intent-launcher';
 class DownloadFile extends Component<any, any>{
 
     state = {
-        item: []
+        item: {}
     }
 
     async componentDidMount() {
-        const data = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory)
-        const todos = []
-        data.forEach((i) => {
-            if (i === "appData") {
-            } else {
-                todos.push(i);
+        // const data = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory)
+        // const todos = []
+        // data.forEach((i) => {
+        //     if (i === "appData") {
+        //     } else {
+        //         FileSystem.readDirectoryAsync(FileSystem.documentDirectory + i).then(response=>{
+        //             if(response.length){
+        //                 todos.push(i);
+        //             }
+        //         })
+        //     }
+        // })
+        // this.setState({ item: todos });
+        const data = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory);
+        const todos = {}
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === "appData") { }
+            else {
+                const data2 = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory + data[i])
+                const p = []
+                data2.forEach((item) => {
+                    p.push(FileSystem.documentDirectory + `${data[i]}/${item}`)
+                })
+                todos[data[i]] = p;
             }
-        })
-        this.setState({ item: todos });
+        }
+        this.setState({item:todos})
+        // data.forEach(async(i)=>{
+        //     if(i === "appData"){
+        //     }else{
+        //         const data = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory + i)
+        //         if(data.length){
+        //            todos[i] = data;
+        //         }
+        //     }
+        //     this.setState({item:todos})
+        //     console.log(this.state.item['maou toubatsu shita ato medachitakunai node guild master ni natta'])
+        // })
     }
 
     private key = (item, index) => item + index;
@@ -27,9 +56,9 @@ class DownloadFile extends Component<any, any>{
     render() {
         return (
             <View style={{ flex: 1 }}>
-                {this.state.item ? (
+                {Object.keys(this.state.item).length ? (
                     <FlatList
-                        data={this.state.item}
+                        data={Object.keys(this.state.item)}
                         renderItem={this.renderItem}
                         keyExtractor={this.key}
                     />
@@ -57,13 +86,15 @@ class DownloadFile extends Component<any, any>{
     }
 
     private onView = (item) => {
-        FileSystem.getContentUriAsync(FileSystem.documentDirectory + item).then(cUri => {
-            IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
-                //@ts-ignore
-                data: cUri.uri,
-                flags: 1,
-            });
-        });
+        console.log(this.state.item[item])
+        this.props.navigation.navigate('Pdf', { id:this.state.item[item]})
+        // FileSystem.getContentUriAsync(FileSystem.documentDirectory + item).then(cUri => {
+        //     IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
+        //         //@ts-ignore
+        //         data: cUri.uri,
+        //         flags: 1,
+        //     });
+        // });
     }
 }
 

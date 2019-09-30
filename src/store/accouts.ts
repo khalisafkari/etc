@@ -2,15 +2,20 @@ interface store {
     email:string
     premium:boolean
     indonesia:boolean
-    download:any
+    download:{
+        [key:string]:any
+    }
 }
 
 const store:store = {
     email:'',
     premium:false,
     indonesia:false,
-    download:{},
+    download:{
+
+    },
 }
+
 
 export const accounts = (state = store,actions)=>{
     switch (actions.type) {
@@ -31,7 +36,10 @@ export const accounts = (state = store,actions)=>{
            }
         case "SET_DOWNLOAD":
             return {
-                ...state
+                ...state,
+                download:{
+                    [actions.payload.id]:[...state.download[actions.payload.id],actions.payload.file]
+                }
             }
         default:
             return state

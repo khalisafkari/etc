@@ -18,7 +18,7 @@ const MangaChapterList = () => {
 
     const data = state.History[navigation.getParam('id')];
 
-    const renderItem = ({ item,index }) => (
+    const renderItem = ({ item, index }) => (
         <View>
             <TouchableOpacity
                 onPress={() => onRead(item.id)}
@@ -26,9 +26,14 @@ const MangaChapterList = () => {
                 <ListItem
                     title={item.title}
                     rightElement={(
-                    //@ts-ignore
-                    <MangaDownload 
-                        data={{id:item.id,download:item.download,index}} />)}
+                        //@ts-ignore
+                        <MangaDownload
+                            data={{
+                                id: item.id,
+                                download: item.download,
+                                index,
+                                nav: navigation.getParam('id')
+                            }} />)}
                 />
             </TouchableOpacity>
         </View>
@@ -36,7 +41,7 @@ const MangaChapterList = () => {
 
     const onRead = (id: string) => {
         dispatch({ type: ADD_HISTORY_CHAPTER, payload: { [`${id}`]: true } })
-        navigation.navigate('MangaRead',{id})
+        navigation.navigate('MangaRead', { id })
     }
 
     const key = (item, index) => item + index
