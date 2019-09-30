@@ -2,7 +2,7 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { MangaHome, MangaLibrary, MangaSearch, MangaGenre, MangaPosts, MangaRead } from '../template/manga';
+import { MangaHome, MangaLibrary, MangaSearch, MangaGenre, MangaPosts, MangaRead,MangaViewAll } from '../template/manga';
 import { AnimeHome, AnimePosts, VideoAnime, AnimeList } from '../template/anime';
 import { ProfileHome, ProfileHistory, ProfileBookmark,DownloadFile,Pdf } from '../template/profile'
 import { NovelHome } from '../template/novel'
@@ -27,7 +27,8 @@ const HomeManga = createStackNavigator({
     screen: MangaPosts,
     path: 'mangaposts',
   },
-  MangaRead: MangaRead
+  MangaRead: MangaRead,
+  MangaViewAll:MangaViewAll
 })
 
 //@ts-ignore

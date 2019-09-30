@@ -54,3 +54,11 @@ export {
     AdmobOnPosts,
     AdmobOnSearch
 };
+
+// export const AdmobOnPosts = () => {
+//     return null
+// }
+
+// export const AdmobOnSearch = () => {
+//     return null
+// }

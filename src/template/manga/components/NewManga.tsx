@@ -60,11 +60,13 @@ const NewManga = () => {
 
     return (
         <View style={{ flex: 1, paddingTop: 20 }}>
-            <TouchableOpacity>
+            <TouchableOpacity 
+                onPress={() => navigation.navigate('MangaViewAll')}
+            >
                 <View style={{ flex: 1, margin: 3, borderRadius: 5, borderTopRightRadius: 50, padding: 3, backgroundColor: '#A21CFF' }}>
-                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                         <Text style={[material.title, { color: 'white' }]}>Manga</Text>
-                        <Text style={{fontSize:14,color:"white"}}>View All</Text>
+                        <Text style={{fontSize:14,color:"white",marginRight:10}}>View All</Text>
                     </View>
                 </View>
             </TouchableOpacity>

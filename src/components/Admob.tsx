@@ -30,3 +30,8 @@ const AdmobBanner = () => {
 } 
 
 export default AdmobBanner;
+
+// import React from 'react'
+// export default function AdmobBanner(){
+//     return null;
+// }

@@ -17,7 +17,7 @@ class ProfileHome extends Component<Props> {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'black' }}>
-                <Header />
+                <Header backgroundColor="black"/>
                 {this.renderContent()}
                 <Pricing/>
             </View>
