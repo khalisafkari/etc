@@ -17,6 +17,7 @@
     "expo-blur": "^7.0.0",
     "expo-file-system": "^7.0.0",
     "expo-in-app-purchases": "^7.0.0",
+    "expo-intent-launcher": "~7.0.0",
     "expo-linear-gradient": "^7.0.0",
     "firebase": "^7.0.0",
     "graphql": "^14.5.7",

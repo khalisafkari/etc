@@ -45,7 +45,10 @@ class ProfileHome extends Component<Props> {
                     
                 />
             </TouchableOpacity>
-            {/* <ListItem
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('DownloadFile')}
+            >
+            <ListItem
                 containerStyle={{
                     backgroundColor: 'rgba(160, 179, 176, 0.25)'
                 }}
@@ -60,7 +63,8 @@ class ProfileHome extends Component<Props> {
                     color: "#a0b3b0"
                 }}
                 
-            /> */}
+            />
+            </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('ProfileBookmark')}
             >

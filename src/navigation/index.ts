@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { MangaHome, MangaLibrary, MangaSearch, MangaGenre, MangaPosts, MangaRead } from '../template/manga';
 import { AnimeHome, AnimePosts, VideoAnime, AnimeList } from '../template/anime';
-import { ProfileHome, ProfileHistory, ProfileBookmark } from '../template/profile'
+import { ProfileHome, ProfileHistory, ProfileBookmark,DownloadFile } from '../template/profile'
 import { NovelHome } from '../template/novel'
 
 
@@ -73,7 +73,8 @@ const Profile = createStackNavigator({
   ProfileHistory: ProfileHistory,
   ProfileBookmark: ProfileBookmark,
   MangaPosts: MangaPosts,
-  MangaRead: MangaRead
+  MangaRead: MangaRead,
+  DownloadFile:DownloadFile
 })
 
 //@ts-ignore
