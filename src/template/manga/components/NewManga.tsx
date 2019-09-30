@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 import { POSTS_HOME_MANGA } from '../../../store/manga';
 
 //navigation 
-import {useNavigation} from 'react-navigation-hooks'
+import { useNavigation } from 'react-navigation-hooks'
 
 
 const NewManga = () => {
@@ -31,7 +31,7 @@ const NewManga = () => {
     const renderItem = ({ item }) => (
         <View style={{ flex: 1 / 3, margin: 3, position: 'relative' }}>
             <TouchableOpacity
-                onPress={() => navigation.navigate('MangaPosts',{id:item.id})}
+                onPress={() => navigation.navigate('MangaPosts', { id: item.id })}
             >
                 <Image
                     source={{ uri: `https://verdauen.com/lhscan/?id=${item.images}` }}
@@ -59,10 +59,15 @@ const NewManga = () => {
     )
 
     return (
-        <View style={{ flex: 1,paddingTop:20 }}>
-            {/* <View style={{ flex: 1, margin: 3, borderRadius: 5, borderTopRightRadius: 50, padding: 3, backgroundColor: '#A21CFF' }}>
-                <Text style={[material.title, { color: 'white' }]}>Manga</Text>
-            </View> */}
+        <View style={{ flex: 1, paddingTop: 20 }}>
+            <TouchableOpacity>
+                <View style={{ flex: 1, margin: 3, borderRadius: 5, borderTopRightRadius: 50, padding: 3, backgroundColor: '#A21CFF' }}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                        <Text style={[material.title, { color: 'white' }]}>Manga</Text>
+                        <Text style={{fontSize:14,color:"white"}}>View All</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
             <FlatList
                 numColumns={3}
                 data={manga.Home}

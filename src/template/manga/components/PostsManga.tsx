@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList, TouchableOpacity,Share } from 'react-native';
 
 //redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -68,12 +68,12 @@ const PostsManga = () => {
             ) : null}
             {data ? (
                 <View style={{ paddingTop:5,flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Icon
+                    {/* <Icon
                         name="play"
                         type="feather"
                         color="blue"
                         onPress={() => onRead(data.item[0].id)}
-                    />
+                    /> */}
                     {/* <Icon
                         name="list"
                         type="feather"
@@ -91,7 +91,7 @@ const PostsManga = () => {
                         name="share"
                         type="material-icons"
                         color="blue"
-                        onPress={() => console.log('pres')}
+                        onPress={() => Share.share({message:`Baca Manga ${navigation.getParam('id')}`})}
                     />
                 </View>
             ) : null}
