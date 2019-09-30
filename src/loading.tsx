@@ -4,10 +4,10 @@ import { Text } from 'react-native-elements';
 import { material } from 'react-native-typography';
 import axios from 'axios'
 import { connect } from 'react-redux'
-import RNFirebase from './utils/firebase'
+//import RNFirebase from './utils/firebase'
 import { WebView } from 'react-native-webview'
 import Manga from './utils/manga'
-//import RNFirebase from './utils/RNFirebase'
+import RNFirebase from './utils/RNFirebase'
 
 interface State {
     loading: boolean

@@ -55,6 +55,17 @@ class RNFirebase {
         const firestore = await firebase.firestore().collection('users').doc(data).get()
         return firestore.data();
     }
+
+    async onCheck(cb){
+        this.onChange((data)=>{
+            firebase.firestore().collection('users').doc(data.email).get()
+            .then((res)=>{
+                cb(res.data())
+            }).catch((er)=>{
+                Alert.alert('eeror',er);
+            })
+        })
+    }
     
 }
 
